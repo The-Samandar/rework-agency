@@ -195,7 +195,7 @@ const buildMessage = () => {
     form.service ? `🛠 <b>${l.service}:</b> ${form.service}` : null,
     form.desc     ? `📝 <b>${l.desc}:</b>\n${form.desc}` : null,
     ``,
-    `🌐 <b>${l.source}:</b> reworkagency.com`,
+    `🌐 <b>${l.source}:</b> reworkagency.uz`,
     `🕐 ${now}`,
   ]
   return lines.filter(l => l !== null).join('\n')
