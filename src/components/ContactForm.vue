@@ -12,7 +12,7 @@
           <p class="contact-sub">{{ t('contact.sub') }}</p>
 
           <div class="contact-links">
-            <!-- Telegram bot -->
+            <!-- Telegram bot only -->
             <a href="https://t.me/reworkagencybot" class="contact-link" target="_blank" rel="noopener noreferrer">
               <div class="link-icon tg-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -25,44 +25,7 @@
               </div>
             </a>
 
-            <!-- Telegram channel -->
-            <a href="https://t.me/reworkagency" class="contact-link" target="_blank" rel="noopener noreferrer">
-              <div class="link-icon tg-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div>
-                <div class="link-label">{{ t('contact.channelLabel') }}</div>
-                <div class="link-val">{{ t('contact.channelHandle') }}</div>
-              </div>
-            </a>
-
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/rework_agency_uz?igsh=MW5lYmtrc2ExemRxeQ==" class="contact-link" target="_blank" rel="noopener noreferrer">
-              <div class="link-icon ig-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <rect x="2" y="2" width="20" height="20" rx="5"/>
-                  <circle cx="12" cy="12" r="4"/>
-                  <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
-                </svg>
-              </div>
-              <div>
-                <div class="link-label">{{ t('contact.instagramLabel') }}</div>
-                <div class="link-val">{{ t('contact.instagramVal') }}</div>
-              </div>
-            </a>
-
-            <!-- Email -->
-            <a :href="'mailto:' + t('contact.emailVal')" class="contact-link">
-              <div class="link-icon mail-icon">✉️</div>
-              <div>
-                <div class="link-label">{{ t('contact.emailLabel') }}</div>
-                <div class="link-val">{{ t('contact.emailVal') }}</div>
-              </div>
-            </a>
-
-            <!-- Location -->
+            <!-- Address only -->
             <div class="contact-link no-link">
               <div class="link-icon loc-icon">📍</div>
               <div>
@@ -76,7 +39,6 @@
         <!-- Form column -->
         <div class="form-wrap" v-observe>
           <form class="contact-form" @submit.prevent="handleSubmit" novalidate>
-            <!-- Name + Phone row -->
             <div class="form-row">
               <div class="form-group" :class="{ error: errors.name }">
                 <label>
@@ -106,7 +68,6 @@
               </div>
             </div>
 
-            <!-- Service type -->
             <div class="form-group">
               <label>{{ t('contact.labelService') }}</label>
               <input
@@ -116,7 +77,6 @@
               />
             </div>
 
-            <!-- Description -->
             <div class="form-group">
               <label>{{ t('contact.labelDesc') }}</label>
               <textarea
@@ -126,7 +86,6 @@
               ></textarea>
             </div>
 
-            <!-- Error / success banner -->
             <Transition name="banner">
               <div v-if="sendError" class="form-banner error-banner">
                 ⚠️ {{ sendError }}
@@ -161,9 +120,7 @@ import { useLang } from '@/composables/useLang.js'
 
 const { t, lang } = useLang()
 
-// Telegram group chat ID
 const TG_CHAT_ID = '-5247751549'
-// Bot token — replace with your real token
 const TG_BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE'
 
 const form = reactive({ name: '', phone: '', service: '', desc: '' })
@@ -172,46 +129,39 @@ const loading = ref(false)
 const submitted = ref(false)
 const sendError = ref('')
 
-const serviceLabels = {
-  ru: { name: 'Имя', phone: 'Телефон', service: 'Услуга', desc: 'Описание', source: 'Источник' },
-  en: { name: 'Name', phone: 'Phone', service: 'Service', desc: 'Description', source: 'Source' },
-  uz: { name: 'Ism', phone: 'Telefon', service: 'Xizmat', desc: 'Tavsif', source: 'Manba' },
+const errMsgs = {
+  name:  { ru: 'Введите ваше имя',       en: 'Please enter your name',        uz: 'Ismingizni kiriting' },
+  phone: { ru: 'Введите номер телефона', en: 'Please enter your phone number', uz: 'Telefon raqamini kiriting' },
 }
 
 const validate = () => {
-  errors.name = form.name.trim() ? '' : (lang.lang === 'ru' ? 'Введите ваше имя' : lang.lang === 'uz' ? 'Ismingizni kiriting' : 'Please enter your name')
-  errors.phone = form.phone.trim() ? '' : (lang.lang === 'ru' ? 'Введите номер телефона' : lang.lang === 'uz' ? 'Telefon raqamini kiriting' : 'Please enter your phone number')
+  const l = lang.lang
+  errors.name  = form.name.trim()  ? '' : errMsgs.name[l]
+  errors.phone = form.phone.trim() ? '' : errMsgs.phone[l]
   return !errors.name && !errors.phone
 }
 
 const buildMessage = () => {
-  const l = serviceLabels[lang.lang] || serviceLabels.ru
   const now = new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Tashkent' })
   const lines = [
-    `🔔 <b>Новая заявка с сайта Rework Agency</b>`,
+    `🔔 <b>Новая заявка — Rework Agency</b>`,
     ``,
-    `👤 <b>${l.name}:</b> ${form.name}`,
-    `📞 <b>${l.phone}:</b> ${form.phone}`,
-    form.service ? `🛠 <b>${l.service}:</b> ${form.service}` : null,
-    form.desc     ? `📝 <b>${l.desc}:</b>\n${form.desc}` : null,
+    `👤 <b>Имя:</b> ${form.name}`,
+    `📞 <b>Телефон:</b> ${form.phone}`,
+    form.service ? `🛠 <b>Услуга:</b> ${form.service}` : null,
+    form.desc    ? `📝 <b>Описание:</b>\n${form.desc}` : null,
     ``,
-    `🌐 <b>${l.source}:</b> reworkagency.uz`,
-    `🕐 ${now}`,
+    `🌐 <b>Источник:</b> reworkagency.com`,
+    `🕐 <b>Время:</b> ${now}`,
   ]
   return lines.filter(l => l !== null).join('\n')
 }
 
 const sendToTelegram = async () => {
-  const text = buildMessage()
-  const url = `https://api.telegram.org/bot8783760660:AAFUypN479KO5Kr-6T931vxUEXOHiP7sG40/sendMessage`
-  const res = await fetch(url, {
+  const res = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: TG_CHAT_ID,
-      text,
-      parse_mode: 'HTML',
-    }),
+    body: JSON.stringify({ chat_id: TG_CHAT_ID, text: buildMessage(), parse_mode: 'HTML' }),
   })
   if (!res.ok) {
     const data = await res.json()
@@ -222,7 +172,6 @@ const sendToTelegram = async () => {
 const handleSubmit = async () => {
   sendError.value = ''
   if (!validate()) return
-
   loading.value = true
   try {
     await sendToTelegram()
@@ -231,11 +180,12 @@ const handleSubmit = async () => {
     setTimeout(() => { submitted.value = false }, 5000)
   } catch (e) {
     console.error(e)
-    sendError.value = lang.lang === 'ru'
+    const l = lang.lang
+    sendError.value = l === 'ru'
       ? 'Ошибка отправки. Напишите нам напрямую в Telegram.'
-      : lang.lang === 'uz'
-      ? "Yuborishda xato. Bizga to'g'ridan-to'g'ri Telegram'da yozing."
-      : 'Failed to send. Please write to us on Telegram directly.'
+      : l === 'uz'
+      ? "Yuborishda xato. Telegram'da yozing."
+      : 'Failed to send. Please write to us on Telegram.'
   } finally {
     loading.value = false
   }
@@ -264,102 +214,68 @@ const vObserve = {
 
 .contact-title {
   font-size: clamp(26px, 3.5vw, 38px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 16px;
-  margin-top: 12px;
+  font-weight: 800; letter-spacing: -0.03em;
+  margin-bottom: 16px; margin-top: 12px;
 }
 
 .contact-sub {
-  color: var(--text-muted);
-  font-weight: 300;
-  line-height: 1.7;
-  margin-bottom: 36px;
-  font-size: 15px;
+  color: var(--text-muted); font-weight: 300;
+  line-height: 1.7; margin-bottom: 36px; font-size: 15px;
 }
 
-/* Contact links */
 .contact-links { display: flex; flex-direction: column; gap: 14px; }
 
 .contact-link {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  text-decoration: none;
-  transition: var(--transition);
-  cursor: pointer;
-  padding: 12px 14px;
-  border-radius: 12px;
-  border: 1px solid transparent;
+  display: flex; align-items: center; gap: 14px;
+  text-decoration: none; transition: var(--transition);
+  cursor: pointer; padding: 14px 16px;
+  border-radius: 14px; border: 1px solid transparent;
 }
-.contact-link:hover {
-  background: var(--surface);
-  border-color: var(--border);
-}
+.contact-link:hover { background: var(--surface); border-color: var(--border); }
 .no-link { cursor: default; }
 .no-link:hover { background: none; border-color: transparent; }
 
 .link-icon {
-  width: 42px; height: 42px;
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  border: 1px solid var(--border);
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--surface); border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
-  font-size: 17px;
-  flex-shrink: 0;
-  transition: var(--transition);
+  font-size: 17px; flex-shrink: 0; transition: var(--transition);
 }
 .tg-icon  { color: #36aee8; }
-.ig-icon  { color: #e4405f; }
-.mail-icon { font-size: 16px; }
-.loc-icon  { font-size: 16px; }
+.loc-icon { font-size: 20px; }
 
 .contact-link:hover .link-icon {
   background: rgba(59,130,246,0.08);
   border-color: rgba(59,130,246,0.2);
 }
 
-.link-label { color: var(--text); font-weight: 500; font-size: 14px; }
-.link-val   { color: var(--text-muted); font-size: 13px; margin-top: 2px; }
+.link-label { color: var(--text); font-weight: 500; font-size: 15px; }
+.link-val   { color: var(--text-muted); font-size: 13px; margin-top: 3px; }
 
 /* Form */
 .contact-form { display: flex; flex-direction: column; gap: 16px; }
 
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
 .form-group { display: flex; flex-direction: column; gap: 7px; }
 
 .form-group label {
   font-family: var(--font-display);
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  font-size: 11.5px; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
   color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  display: flex; align-items: center; gap: 4px;
 }
 .required { color: var(--blue); font-size: 13px; }
 
 .form-group input,
 .form-group textarea {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 14px 18px;
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 14.5px;
-  font-weight: 300;
-  outline: none;
-  transition: var(--transition);
-  resize: none;
-  width: 100%;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 14px 18px;
+  color: var(--text); font-family: var(--font-body);
+  font-size: 14.5px; font-weight: 300;
+  outline: none; transition: var(--transition);
+  resize: none; width: 100%;
 }
 .form-group input:focus,
 .form-group textarea:focus {
@@ -370,55 +286,34 @@ const vObserve = {
 .form-group input::placeholder,
 .form-group textarea::placeholder { color: var(--text-dim); }
 
-.form-group.error input,
-.form-group.error textarea { border-color: rgba(239, 68, 68, 0.5); }
-.form-group.error input:focus,
-.form-group.error textarea:focus { box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1); }
+.form-group.error input { border-color: rgba(239,68,68,0.5); }
+.form-group.error input:focus { box-shadow: 0 0 0 3px rgba(239,68,68,0.1); }
+.err-msg { color: #f87171; font-size: 12px; }
 
-.err-msg { color: #f87171; font-size: 12px; margin-top: 2px; }
-
-/* Submit button */
 .submit-btn {
-  width: 100%;
-  justify-content: center;
-  padding: 16px;
-  font-size: 15px;
-  margin-top: 4px;
-  min-height: 54px;
+  width: 100%; justify-content: center;
+  padding: 16px; font-size: 15px;
+  margin-top: 4px; min-height: 54px;
 }
 .submit-btn.submitted {
-  background: linear-gradient(135deg, #059669, #0d9488) !important;
+  background: linear-gradient(135deg,#059669,#0d9488) !important;
   cursor: default;
 }
 .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-/* Spinner */
 .spinner {
-  display: inline-block;
-  width: 18px; height: 18px;
+  display: inline-block; width: 18px; height: 18px;
   border: 2px solid rgba(255,255,255,0.3);
-  border-top-color: #fff;
-  border-radius: 50%;
+  border-top-color: #fff; border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Error banner */
-.form-banner {
-  border-radius: var(--radius-sm);
-  padding: 12px 16px;
-  font-size: 13.5px;
-  font-weight: 400;
-}
-.error-banner {
-  background: rgba(239,68,68,0.1);
-  border: 1px solid rgba(239,68,68,0.3);
-  color: #fca5a5;
-}
+.form-banner { border-radius: var(--radius-sm); padding: 12px 16px; font-size: 13.5px; }
+.error-banner { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; }
 .banner-enter-active, .banner-leave-active { transition: opacity 0.3s, transform 0.3s; }
 .banner-enter-from, .banner-leave-to { opacity: 0; transform: translateY(-8px); }
 
-/* Reveal */
 .observe-target { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .observe-target.in-view { opacity: 1; transform: translateY(0); }
 

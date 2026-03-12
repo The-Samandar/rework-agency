@@ -102,7 +102,6 @@ const { t } = useLang()
   margin-bottom: 56px;
 }
 
-/* Brand */
 .footer-logo {
   font-family: var(--font-display);
   font-weight: 800;
@@ -158,7 +157,6 @@ const { t } = useLang()
 }
 .social-pill:hover { transform: translateY(-1px); opacity: 0.9; }
 
-/* Footer columns */
 .footer-col h5 {
   font-family: var(--font-display);
   font-size: 11px;

@@ -116,7 +116,7 @@ const translations = {
       instagramLabel: 'Instagram',
       instagramVal: '@rework_agency_uz',
       locationLabel: 'Местоположение',
-      locationVal: 'Ташкент, Узбекистан',
+      locationVal: 'Узбекистан, Ташкент, Амир Темур 60',
     },
     footer: {
       tagline: 'Цифровые решения для роста бизнеса через современный веб, автоматизацию и маркетинг.',
@@ -269,7 +269,7 @@ const translations = {
       instagramLabel: 'Instagram',
       instagramVal: '@rework_agency_uz',
       locationLabel: 'Location',
-      locationVal: 'Tashkent, Uzbekistan',
+      locationVal: 'Uzbekistan, Tashkent, Amir Temur 60',
     },
     footer: {
       tagline: 'Digital solutions that help businesses grow through modern web, automation and data-driven marketing.',
@@ -422,7 +422,7 @@ const translations = {
       instagramLabel: 'Instagram',
       instagramVal: '@rework_agency_uz',
       locationLabel: 'Manzil',
-      locationVal: "Toshkent, O'zbekiston",
+      locationVal: "O'zbekiston, Toshkent, Amir Temur 60",
     },
     footer: {
       tagline: "Zamonaviy veb, avtomatlashtirish va marketing orqali biznes o'sishiga yordam beruvchi raqamli yechimlar.",
