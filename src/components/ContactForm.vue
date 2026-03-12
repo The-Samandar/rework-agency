@@ -158,7 +158,7 @@ const buildMessage = () => {
 }
 
 const sendToTelegram = async () => {
-  const res = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+  const res = await fetch(`https://api.telegram.org/bot8783760660:AAFUypN479KO5Kr-6T931vxUEXOHiP7sG40/sendMessage`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ chat_id: TG_CHAT_ID, text: buildMessage(), parse_mode: 'HTML' }),
