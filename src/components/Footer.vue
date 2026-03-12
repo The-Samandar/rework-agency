@@ -6,17 +6,20 @@
         <div class="footer-brand">
           <RouterLink to="/" class="footer-logo">Rework<span>.</span></RouterLink>
           <p class="footer-tagline">{{ t('footer.tagline') }}</p>
-          <a
-            href="https://t.me/reworkagencybot"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="tg-mini"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.026 9.546c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.26 14.257l-2.947-.924c-.641-.202-.654-.641.136-.949l11.498-4.432c.537-.194 1.006.131.615.296z"/>
-            </svg>
-            @reworkagencybot
-          </a>
+          <div class="footer-socials-inline">
+            <a href="https://t.me/reworkagencybot" target="_blank" rel="noopener" class="social-pill tg">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.026 9.546c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.26 14.257l-2.947-.924c-.641-.202-.654-.641.136-.949l11.498-4.432c.537-.194 1.006.131.615.296z"/>
+              </svg>
+              @reworkagencybot
+            </a>
+            <a href="https://t.me/reworkagency" target="_blank" rel="noopener" class="social-pill tg-ch">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              @reworkagency
+            </a>
+          </div>
         </div>
 
         <!-- Services -->
@@ -43,10 +46,10 @@
         <!-- Contact -->
         <div class="footer-col">
           <h5>{{ t('footer.contact') }}</h5>
-          <a href="mailto:hello@reworkagency.com">{{ t('footer.links.telegram') }}</a>
-          <a href="https://t.me/reworkagencybot" target="_blank" rel="noopener">Telegram</a>
-          <a href="#">{{ t('footer.links.instagram') }}</a>
-          <a href="#">{{ t('footer.links.linkedin') }}</a>
+          <a href="https://t.me/reworkagencybot" target="_blank" rel="noopener">{{ t('footer.links.telegram') }}</a>
+          <a href="https://t.me/reworkagency" target="_blank" rel="noopener">{{ t('footer.links.channel') }}</a>
+          <a href="https://www.instagram.com/rework_agency_uz?igsh=MW5lYmtrc2ExemRxeQ==" target="_blank" rel="noopener">{{ t('footer.links.instagram') }}</a>
+          <a href="mailto:hello@reworkagency.com">hello@reworkagency.com</a>
         </div>
       </div>
 
@@ -54,25 +57,24 @@
       <div class="footer-bottom">
         <span class="footer-copy">{{ t('footer.copyright') }}</span>
         <div class="footer-socials">
-          <!-- Telegram -->
-          <a href="https://t.me/reworkagencybot" target="_blank" rel="noopener" class="social-btn" aria-label="Telegram">
+          <!-- Telegram bot -->
+          <a href="https://t.me/reworkagencybot" target="_blank" rel="noopener" class="social-btn" aria-label="Telegram Bot">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.026 9.546c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.26 14.257l-2.947-.924c-.641-.202-.654-.641.136-.949l11.498-4.432c.537-.194 1.006.131.615.296z"/>
             </svg>
           </a>
+          <!-- Telegram channel -->
+          <a href="https://t.me/reworkagency" target="_blank" rel="noopener" class="social-btn" aria-label="Telegram Channel">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
           <!-- Instagram -->
-          <a href="#" class="social-btn" aria-label="Instagram">
+          <a href="https://www.instagram.com/rework_agency_uz?igsh=MW5lYmtrc2ExemRxeQ==" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <rect x="2" y="2" width="20" height="20" rx="5"/>
               <circle cx="12" cy="12" r="4"/>
               <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
-            </svg>
-          </a>
-          <!-- LinkedIn -->
-          <a href="#" class="social-btn" aria-label="LinkedIn">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
-              <circle cx="4" cy="4" r="2"/>
             </svg>
           </a>
         </div>
@@ -112,6 +114,7 @@ const { t } = useLang()
   background-clip: text;
   display: inline-block;
   margin-bottom: 14px;
+  text-decoration: none;
 }
 .footer-logo span { -webkit-text-fill-color: #fff; }
 
@@ -124,25 +127,36 @@ const { t } = useLang()
   margin-bottom: 20px;
 }
 
-.tg-mini {
+.footer-socials-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.social-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(0,136,204,0.12);
-  border: 1px solid rgba(0,136,204,0.25);
   border-radius: 8px;
-  padding: 8px 14px;
-  color: #36aee8;
+  padding: 7px 12px;
   font-size: 12px;
   font-family: var(--font-display);
   font-weight: 600;
   text-decoration: none;
   transition: var(--transition);
+  width: fit-content;
 }
-.tg-mini:hover {
-  background: rgba(0,136,204,0.22);
-  transform: translateY(-1px);
+.social-pill.tg {
+  background: rgba(54, 174, 232, 0.1);
+  border: 1px solid rgba(54, 174, 232, 0.25);
+  color: #36aee8;
 }
+.social-pill.tg-ch {
+  background: rgba(139,92,246,0.1);
+  border: 1px solid rgba(139,92,246,0.25);
+  color: #a78bfa;
+}
+.social-pill:hover { transform: translateY(-1px); opacity: 0.9; }
 
 /* Footer columns */
 .footer-col h5 {
@@ -154,7 +168,6 @@ const { t } = useLang()
   color: var(--text-dim);
   margin-bottom: 20px;
 }
-
 .footer-col a {
   display: block;
   color: var(--text-muted);
@@ -176,31 +189,20 @@ const { t } = useLang()
   flex-wrap: wrap;
   gap: 16px;
 }
+.footer-copy { color: var(--text-dim); font-size: 13px; font-weight: 300; }
 
-.footer-copy {
-  color: var(--text-dim);
-  font-size: 13px;
-  font-weight: 300;
-}
-
-.footer-socials {
-  display: flex;
-  gap: 10px;
-}
+.footer-socials { display: flex; gap: 10px; }
 
 .social-btn {
   width: 36px; height: 36px;
   border-radius: 9px;
   background: var(--surface);
   border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   color: var(--text-muted);
   text-decoration: none;
   transition: var(--transition);
 }
-
 .social-btn:hover {
   background: rgba(59,130,246,0.1);
   border-color: rgba(59,130,246,0.2);
@@ -208,9 +210,7 @@ const { t } = useLang()
   transform: translateY(-2px);
 }
 
-@media (max-width: 1024px) {
-  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-}
+@media (max-width: 1024px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; } }
 @media (max-width: 600px) {
   .footer-top { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }

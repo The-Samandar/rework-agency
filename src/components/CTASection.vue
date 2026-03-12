@@ -17,7 +17,7 @@
             {{ t('cta.btnPrimary') }}
           </RouterLink>
           <a
-            href="https://t.me/Rework_AssistantBot"
+            href="https://t.me/reworkagencybot"
             target="_blank"
             rel="noopener noreferrer"
             class="tg-btn"
